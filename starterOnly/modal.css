@@ -32,13 +32,14 @@ img {
 
 .topnav {
   overflow: hidden;
-  margin: 3.5%;
+  /*margin: 3.5%;*/
+  margin: 3.5% 0 3.5% 3.5%;
 }
 .header-logo {
-    float: left;
+  float: left;
 }
 .main-navbar {
-    float: right;
+  float: right;
 }
 .topnav a {
   float: left;
@@ -92,7 +93,7 @@ img {
 
 
 
- @media screen and (max-width: 540px) {
+@media screen and (max-width: 540px) {
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
@@ -111,8 +112,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -410,7 +409,8 @@ input[data-error]::after {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   overflow: hidden;
-  box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
+  /*box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);*/
+  box-shadow: 0 6px 7px 2px rgba(0, 0, 0, 0.3);
   margin-bottom: 10px;
 }
 .hero-content {
@@ -436,7 +436,8 @@ input[data-error]::after {
   z-index: 1;
 }
 .hero-headline {
-  font-size: 6rem;
+  /*font-size: 6rem;*/
+  font-size: 96px;
   font-weight: normal;
   white-space: nowrap;
 }
@@ -456,6 +457,8 @@ input[data-error]::after {
 }
 .hero-img {
   grid-column: span 8;
+  /* ajout padding */
+  padding-left: 80px;
 }
 .hero-img img {
   width: 100%;
@@ -474,9 +477,9 @@ input[data-error]::after {
   display: none;
 }
 footer {
-  padding-left: 2vw;
+  /*padding-left: 2vw;*/
   padding-right: 2vw;
-  margin: 0 20px;
+  /*margin: 0 20px;*/
 }
 @media screen and (max-width: 800px) {
   .hero-section {
@@ -495,7 +498,9 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    /*font-size: 4.5rem;*/
+    font-size: 40px;
+    font-weight: 500;
     white-space: normal;
   }
   .hero-text {
