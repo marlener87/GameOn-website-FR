@@ -70,15 +70,24 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav a {display: none;}
+  .topnav {
+    margin: 5% 3.5% 5% 5%;
+  }
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
+    /* ajout couleur */
+    color: #ff0000;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -94,7 +103,9 @@ img {
 
 
 @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
@@ -172,6 +183,7 @@ main {
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
+  /*max-width: 536px;*/
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #232323;
@@ -180,6 +192,8 @@ main {
   position: relative;
   color: #fff;
   padding-top: 10px;
+  /* ajout code*/
+  padding-bottom: 17px;
 }
 
 .modal-body {
@@ -189,10 +203,12 @@ main {
 
 label {
   font-family: var(--font-default);
-  font-size: 17px;
+  /*font-size: 17px;*/
+  font-size: 14px;
   font-weight: normal;
   display: inline-block;
-  margin-bottom: 11px;
+  /*margin-bottom: 11px;*/
+  margin-bottom: 17px;
 }
 input {
   padding: 8px;
@@ -206,6 +222,11 @@ input {
   border-radius: 8px;
   font-size: 20px;
   height: 48px;
+}
+
+/*ajout code*/
+.validation {
+  padding: 0 8%;
 }
 .formData[data-error]::after {
   content: attr(data-error);
@@ -320,6 +341,12 @@ input[data-error]::after {
 .close:after {
   transform: rotate(-45deg);
 }
+
+/* ajout code 
+.btn-submit {
+  margin: 17px 0;
+}*/
+
 .btn-submit,
 .btn-signup {
   background: #fe142f;
@@ -401,7 +428,8 @@ input[data-error]::after {
 /* custom select end */
 .text-label {
   font-weight: normal;
-  font-size: 16px;
+  /*font-size: 16px;*/
+  font-size: 14px;
 }
 .hero-section {
   min-height: 93vh;
@@ -481,6 +509,9 @@ footer {
   padding-right: 2vw;
   /*margin: 0 20px;*/
 }
+
+
+/* SMARTPHONE */
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;
@@ -489,7 +520,8 @@ footer {
   .hero-content {
     background: #fff;
     color: #000;
-    padding: 20px;
+    /*padding: 20px;*/
+    padding: 0;
   }
   .hero-content::after {
     content: unset;
@@ -498,14 +530,17 @@ footer {
     display: none;
   }
   .hero-headline {
-    /*font-size: 4.5rem;*/
-    font-size: 40px;
+    font-size: 4.5rem;
+    /*font-size: 40px;*/
     font-weight: 500;
     white-space: normal;
   }
   .hero-text {
     width: unset;
     font-size: 1.5rem;
+  }
+  .hero-img {
+    padding: 0;
   }
   .hero-img img {
     border-radius: 10px;
@@ -517,7 +552,8 @@ footer {
     padding: 12px 35px;
   }
   .copyrights {
-    margin-top: 50px;
+    /*margin-top: 50px;*/
+    margin-top: 15px;
     text-align: center;
   }
 }
