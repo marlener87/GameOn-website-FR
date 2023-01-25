@@ -198,7 +198,7 @@ main {
 
 .modal-body {
   padding: 15px 8%;
-  margin: 15px auto;
+  margin: 15px auto 0 auto;
 }
 
 label {
@@ -258,13 +258,17 @@ input[data-error]::after {
   margin-left: 36px;
   font-size: 12px;
   font-weight: normal;
+  /* ajout code */
+  margin-bottom: 0;
 }
+
 .checkbox-label .checkbox-icon,
 .checkbox2-label .checkbox-icon {
   display: block;
   width: 20px;
   height: 20px;
-  border: 2px solid #279e7a;
+  /*border: 2px solid #279e7a;*/
+  border: 2px solid grey;
   border-radius: 50%;
   text-indent: 29px;
   white-space: nowrap;
@@ -273,6 +277,12 @@ input[data-error]::after {
   top: -1px;
   transition: 0.3s;
 }
+
+/* ajout code
+.checkbox-icon:hover, .checkbox-icon:active {
+  border: 2px solid #279e7a;
+}*/
+
 .checkbox-label .checkbox-icon::after,
 .checkbox2-label .checkbox-icon::after {
   content: "";
@@ -342,10 +352,8 @@ input[data-error]::after {
   transform: rotate(-45deg);
 }
 
-/* ajout code 
-.btn-submit {
-  margin: 17px 0;
-}*/
+
+
 
 .btn-submit,
 .btn-signup {
@@ -359,6 +367,11 @@ input[data-error]::after {
   cursor: pointer;
   border: 0;
 }
+/* ajout code */
+.btn-submit {
+  margin: 19px auto 0 auto;
+}
+
 /* custom select styles */
 .custom-select {
   position: relative;
@@ -430,6 +443,8 @@ input[data-error]::after {
   font-weight: normal;
   /*font-size: 16px;*/
   font-size: 14px;
+  /* ajout code */
+  padding: 10px 0;
 }
 .hero-section {
   min-height: 93vh;
@@ -550,6 +565,10 @@ footer {
     display: block;
     margin: 32px auto 10px;
     padding: 12px 35px;
+  }
+
+  .content {
+    max-width: 100%;
   }
   .copyrights {
     /*margin-top: 50px;*/
