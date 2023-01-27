@@ -18,7 +18,7 @@ const modalBtnClose = document.querySelectorAll(".close");
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// fermeture modale
+// ajout fermeture modale
 modalBtnClose.forEach((btn) => btn.addEventListener("click", closeModal));
 
 // launch modal form
