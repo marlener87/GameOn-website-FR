@@ -49,28 +49,38 @@
               <div class="formData">
                 <label for="first">Prénom</label><br>
                 <input class="text-control" type="text" id="first" name="first" minlength="2"/><br>
-                <span id="erreurFirst"></span>
+                <span class="error" id="firstNameError"></span>
+                <button id="btnClickFirst">Click</button>
               </div>
+
               <div class="formData">
                 <label for="last">Nom</label><br>
                 <input class="text-control" type="text" id="last" name="last" minlength="2"/><br>
-                <span id="erreurLast"></span>
+                <span class="error" id="lastNameError"></span>
+                <button id="btnClickLast">Click</button>
               </div>
+
               <div class="formData">
                 <label for="email">E-mail</label><br>
                 <input class="text-control" type="email" id="email" name="email"/><br>
-                <span id="erreurMail"></span>
+                <span class="error" id="emailError"></span>
+                <button id="btnClickEmail">Click</button>
               </div>
+
               <div class="formData">
                 <label for="birthdate">Date de naissance</label><br>
                 <input class="text-control" type="date" id="birthdate" name="birthdate"/><br>
-                <span id="erreurBirthdate"></span>
+                <span class="error" id="birthdateError"></span>
+                <button id="btnClickBirthdate">Click</button>
               </div>
+
               <div class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
-                <span id="erreurQuantity"></span>
+                <span class="error" id="quantityError"></span>
+                <button id="btnClickQuantity">Click</button>
               </div>
+
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div class="formData">
                 <input
@@ -139,7 +149,7 @@
                   <span class="checkbox-icon"></span>
                   Portland</label>
               </div>
-              <span id="erreur"></span>
+              <span class="error" id="locationTournoiError"></span>
 
               <div class="formData validation">
                 <input
