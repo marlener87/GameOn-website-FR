@@ -9,8 +9,9 @@
     <link href="https://fonts.googleapis.com/css?family=DM+Sans" rel="stylesheet"/>
   </head>
   <body>
+
     <!-- NAVBAR -->
-    <div class="topnav" id="myTopnav">
+    <div class="topnav classB" id="pageNavigation">
       <div class="header-logo">
         <img alt="logo" src="Logo.png" width="auto" height="auto" />
       </div>
@@ -20,7 +21,7 @@
         <a href="#"><span>À propos</span></a>
         <a href="#"><span>Contact</span></a>
         <a href="#"><span>Évènements passés</span></a>
-        <a href="javascript:void(0);" class="icon" onclick="editNav()">
+        <a href="#" class="icon" id="mySuperBtn">
           <i class="fa fa-bars"></i>
         </a>
       </div>
@@ -176,11 +177,11 @@
               </div>
               
               <input
-                class="btn-submit"
+                class="button btn-submit"
                 type="submit"
-                class="button"
                 id="button"
                 value="C'est parti"
+                formnovalidate
               />
             </form>
           </div>
