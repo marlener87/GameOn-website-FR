@@ -1,9 +1,12 @@
 function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
+  // on récupère le noeud avec l'ID myTopnav
+  var nodeNavigation = document.getElementById("myTopnav");
+
+  // pour ajouter une autre classe
+  if (nodeNavigation.className === "topnav") {
+    nodeNavigation.className += " responsive";
   } else {
-    x.className = "topnav";
+    nodeNavigation.className = "topnav";
   }
 }
 
@@ -69,7 +72,7 @@ function checkEmail(input) {
 }
 
 // Vérifier les champs obligatoires
-function champsRequis()
+//function champsRequis()
 
 
 
