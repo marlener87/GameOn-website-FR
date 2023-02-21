@@ -32,19 +32,19 @@ const quantity = document.querySelector("#quantity");
 const locationTournoi = document.getElementsByName("#location");
 
 
-// POUR OUVRIR OU FERMER LE FORMULAIRE
+// TO OPEN OR CLOSE THE FORM
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// ajout fermeture modale
-//modalBtnClose.forEach((btn) => btn.addEventListener("click", closeModal));
+// closing modal event
+modalBtnClose.forEach((btn) => btn.addEventListener("click", closeModal));
 
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
 }
 
-// Fonction fermeture modale
+// closing modal form
 function closeModal() {
   modalbg.style.display = "none";
 }
@@ -89,8 +89,8 @@ let input = document.querySelectorAll('input');
 let inputValue = '';
 
 
-let btnFirst = document.querySelector('#btnClickFirst');
-btnFirst.addEventListener('click', (event) => {
+let btnFirst = document.querySelector('#first');
+btnFirst.addEventListener('input', (event) => {
   event.preventDefault();
 
   const error = document.querySelector('#firstNameError')
@@ -102,8 +102,35 @@ btnFirst.addEventListener('click', (event) => {
   }
   console.log(firstName.value);
 })
+/* let btnFirst = document.querySelector('#btnClickFirst');
+btnFirst.addEventListener('click', (event) => {
+  event.preventDefault();
 
-let btnLast = document.querySelector('#btnClickLast');
+  const error = document.querySelector('#firstNameError')
+
+  if (firstName.value === '' || firstName.value.length < 2) {
+      error.innerHTML = 'Merci de remplir ce champ';
+  } else {
+      error.innerHTML = '';
+  }
+  console.log(firstName.value);
+})*/
+
+let btnLast = document.querySelector('#last');
+btnLast.addEventListener('input', (event) => {
+  event.preventDefault();
+
+  const error = document.querySelector('#lastNameError')
+
+  if (lastName.value === '' || lastName.value.length < 2) {
+      error.innerHTML = 'Merci de remplir ce champ';
+    } else {
+        error.innerHTML = '';
+  }
+  console.log(lastName.value);
+})
+
+/*let btnLast = document.querySelector('#btnClickLast');
 btnLast.addEventListener('click', (event) => {
   event.preventDefault();
 
@@ -115,21 +142,53 @@ btnLast.addEventListener('click', (event) => {
       error.innerHTML = '';
   }
   console.log(lastName.value);
-})
+})*/
 
 let btnEmail = document.querySelector('#btnClickEmail');
-btnEmail.addEventListener('click', (event) => {
+/*btnEmail.addEventListener('click', (event) => {
   event.preventDefault();
 
-  const error = document.querySelector('#emailError')
+  
+  const error = document.querySelector('#emailError');
+  const mail = email.value;
+  const regex = /[A-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
+  const found = mail.match(regex);
 
-  if (email.value === '' || email.value !== /[A-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/) {
+
+  console.log(found);
+  if (email.value === '' || email.value !== found) {
       error.innerHTML = 'Adresse mail incorrecte';
   } else {
       error.innerHTML = '';
   }
   console.log(email.value);
+})*/
+
+btnEmail.addEventListener('click', (event) => {
+  event.preventDefault();
+
+  let regex = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
+
+  if (regex.test(event.target.email.value)) {
+    alert("Valide !");
+  } else {
+    alert("Invalide !");
+  }
+
+  console.log(email.value);
+
 })
+
+/*function validateEmail(e) {
+  let regex = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
+
+  if (regex.test(e.target.email.value)) {
+    alert("Valide !");
+  } else {
+    alert("Invalide !");
+  }
+}*/
+
 
 let btnBirthdate = document.querySelector('#btnClickBirthdate');
 btnBirthdate.addEventListener('click', (event) => {
@@ -151,8 +210,9 @@ btnBirthdate.addEventListener('click', (event) => {
   console.log(birthdate.value);
 })
 
-let btnQuantity = document.querySelector('#btnClickQuantity');
-btnQuantity.addEventListener('click', (event) => {
+
+let btnQuantity = document.querySelector('#quantity');
+btnQuantity.addEventListener('input', (event) => {
   event.preventDefault();
 
   const error = document.querySelector('#quantityError');
@@ -164,6 +224,20 @@ btnQuantity.addEventListener('click', (event) => {
   console.log(quantity.value);
 
 })
+
+/*let btnQuantity = document.querySelector('#btnClickQuantity');
+btnQuantity.addEventListener('click', (event) => {
+  event.preventDefault();
+
+  const error = document.querySelector('#quantityError');
+  if (quantity.value === '' || isNaN(quantity.value)) {
+      error.innerHTML = 'Merci de remplir ce champ';
+  } else {
+      error.innerHTML = '';
+  }
+  console.log(quantity.value);
+
+})*/
 
 // vérifie si l'input est vide ou rempli et affiche un message si il est vide
 /*btn.addEventListener('click', function (event) {
