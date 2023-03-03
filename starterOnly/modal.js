@@ -12,15 +12,14 @@ function openClosePageNavigation() {
 
 
 // On récupère le noeud avec l'ID myTopnav
-const superBtn = document.querySelector("#mySuperBtn");
-superBtn.addEventListener("click", openClosePageNavigation);
+const menu_deroulant = document.querySelector("#menu_deroulant");
+menu_deroulant.addEventListener("click", openClosePageNavigation);
 
 
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-// ajout
 const modalBtnClose = document.querySelectorAll(".close");
 
 
@@ -31,6 +30,7 @@ const email = document.querySelector("#email");
 const birthdate = document.querySelector("#birthdate");
 const quantity = document.querySelector("#quantity");
 const locationTournoi = document.getElementsByName("#location");
+const myButton = document.querySelector('#checkbox1');
 
 
 // TO OPEN OR CLOSE THE FORM
@@ -48,30 +48,13 @@ function launchModal() {
 // closing modal form
 function closeModal() {
   modalbg.style.display = "none";
+
+  const openForm = document.querySelector('#openForm');
+  openForm.classList.remove('hidden');
+
+  const closeForm = document.querySelector('#closeForm');
+  closeForm.classList.remove('active');
 }
-
-
-// AJOUT CODE
-/**
- * Pour vérifier si des champs ne sont pas correctement remplis
-*/
-function showError(input, message) {
-  const formControl = input.parentElement;
-  formControl.className = 'formData error';
-  const small = formControl.querySelector('span');
-  small.innerText = message;
-}
-
-/**
- * Pour vérifier si les champs sont correctement remplis
-*/
-function showSuccess(input) {
-  const formControl = input.parentElement;
-  formControl.className = 'formData success';
-}
-
-
-
 
 
 
@@ -80,6 +63,7 @@ let erreur = document.querySelectorAll('#erreur');
 let input = document.querySelectorAll('input');
 // création de la variable qui récupère les données de l'input
 let inputValue = '';
+// creation de la variable qui permet de sélectionner une date d'anniversaire <= à la date du jour
 let today = new Date().toISOString().split('T')[0];
 document.getElementsByName('birthdate')[0].setAttribute('max', today);
 
@@ -90,33 +74,38 @@ let inputLast = document.querySelector('#last');
 let inputEmail = document.querySelector('#email');
 let inputBirthdate = document.querySelector('#birthdate');
 let inputQuantity = document.querySelector('#quantity');
+let radioTournoi = document.getElementsByName("#location");;
+let checkboxValide = document.querySelector('#checkbox1');
 
+// FUNCTIONS
 
 /**
  * function to validate lastname and firstname
-*/
+ * @param {string} inputName 
+ * @param {string} inputId 
+ * @returns 
+ */
 function checkInputsValidationName (inputName, inputId) {
   const error = document.querySelector('#' + inputId );
 
-  /*let regex = /[a-z]{2,}/i;
-  let valueToCheck = inputName.value;
-
-  if (regex.test(valueToCheck)) {
-    error.innerHTML = '';
-  } else {
-    error.innerHTML = 'Merci de remplir ce champ';
-  }*/
+  let isInputValid = false;
 
   if (inputName.value === '' || inputName.value.trim().length < 2) {
     error.innerHTML = 'Merci de remplir ce champ';
+    isInputValid = false;
   } else {
     error.innerHTML = '';
+    isInputValid = true;
   }
-  console.log(inputName.value);
+
+  //console.log('le champ est : ' + isInputValid)
+  return isInputValid;
+  //console.log(inputName.value);
 } 
 
 /**
  * function to validate email
+ * @returns 
  */
 function checkInputValidationEmail () {
   const error = document.querySelector('#emailError');
@@ -126,86 +115,164 @@ function checkInputValidationEmail () {
   //console.log(event.target.value);
   let regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i;
   let valueToCheck = email.value;
+  let isInputValid = false;
 
   if (regex.test(valueToCheck)) {
     error.innerHTML = '';
+    isInputValid = true;
   } else {
     error.innerHTML = 'Merci de remplir correctement ce champ.';
+    isInputValid = false;
   }
-  console.log(email.value);
+  //console.log(email.value);
+  return isInputValid;
 }
 
 /**
  * function to validate birthdate
+ * @returns
  */
 function checkInputValidationBirthdate () {
   const error = document.querySelector('#birthdateError');
   //let date = new Date();
   let birthday = birthdate.value;
+  let isInputValid = false;
 
   //console.log(date);
   if(birthday === '') {
     error.innerHTML = 'Merci de remplir ce champ';
+    isInputValid = false;
   } else {
     error.innerHTML = '';
+    isInputValid = true;
   }
-  console.log(birthdate.value);
+  //console.log(birthdate.value);
+  return isInputValid;
 }
 
 /**
  * function to validate tournament quantity
+ * @returns
  */
 function checkInputValidationQuantity () {
   const error = document.querySelector('#quantityError');
+  let isInputValid = false;
+
   if (quantity.value === '' || isNaN(quantity.value) || quantity.value >= 100) {
     error.innerHTML = 'Merci de remplir ce champ';
+    isInputValid = false;
   } else {
     error.innerHTML = '';
+    isInputValid = true;
   }
-  console.log(quantity.value);
+  //console.log(quantity.value);
+  return isInputValid
+}
+
+/**
+ * function to check is ckeckbox is checked
+ */
+function checkCheckboxIsTick () {
+  //console.log(myButton.checked);
+  const error = document.querySelector('#myButtonError');
+  //document.getElementById('checkbox1').checked = true;
+  //console.log('#checkbox1');
+  let isBoxChecked = false
+  
+  if(document.getElementById('checkbox1').checked) {
+    error.innerHTML = '';
+    isBoxChecked = true;
+  } else {
+    error.innerHTML = 'Merci d\'accepter les conditions d\'utilisation';
+    isBoxChecked = false;
+  }
+
+  return isBoxChecked
+}
+
+/**
+ * function to check if a city is tick
+ */
+function checkRadioIsTick () {
+  const truc = document.querySelector('input[name="location"]:checked');
+  const error = document.querySelector('#locationTournoiError');
+  let isRadioChecked = false;
+
+  if(truc === null) {
+    error.innerHTML = 'Merci de sélectionner une ville.';
+    isRadioChecked = false;
+  } else {
+    error.innerHTML = '';
+    isRadioChecked = true;
+  }
+
+  return isRadioChecked 
+}
+
+
+/**
+ * function to reset form
+ */
+function resetMyForm () {
+  inputFirst.value = '';
+  inputLast.value = '';
+  inputEmail.value = '';
+  inputBirthdate.value = '';
+  inputQuantity.value = '';
+  radioTournoi.value = '';
 }
 
 
 
-
-
-// function checkInputFirstName () {
-//   //console.log('coucou')
-//   const error = document.querySelector('#firstNameError');
-
-//   if (firstName.value === '' || firstName.value.length < 2) {
-//       error.innerHTML = 'Merci de remplir ce champ';
-//   } else {
-//       error.innerHTML = '';
-//   }
-//   console.log(firstName.value);
-// }
-
-// function checkInputLastName() {
-//   const error = document.querySelector('#lastNameError')
-
-//   if (lastName.value === '' || lastName.value.length < 2) {
-//       error.innerHTML = 'Merci de remplir ce champ';
-//     } else {
-//         error.innerHTML = '';
-//   }
-//   console.log(lastName.value);
-// }
-
+// EVENTS
 
 // creation of the button variable
 btn.addEventListener('click', (event) => {
   event.preventDefault();
+
+  const error = document.querySelector('#btnError');
   //console.log('le formulaire est bon.');
 
-  //checkInputFirstName();
-  //checkInputLastName();
-  checkInputsValidationName(firstName, 'firstNameError');
-  checkInputsValidationName(lastName, 'lastNameError');
-  checkInputValidationEmail();
-  checkInputValidationBirthdate();
-  checkInputValidationQuantity();
+  const isFirstNameIsValid = checkInputsValidationName(firstName, 'firstNameError');
+  console.log(isFirstNameIsValid);
+  const isLastNameIsValid = checkInputsValidationName(lastName, 'lastNameError');
+  console.log(isLastNameIsValid);
+  const isEmailIsValid = checkInputValidationEmail();
+  console.log(isEmailIsValid);
+  const isBirthdateIsValid = checkInputValidationBirthdate();
+  console.log(isBirthdateIsValid);
+  const isQuantityIsValid = checkInputValidationQuantity();
+  console.log(isQuantityIsValid);
+  const isRadioIsValid = checkRadioIsTick();
+  console.log(isRadioIsValid);
+  const isMyButtonIsValid = checkCheckboxIsTick();
+  console.log(isMyButtonIsValid);
+
+
+  if(isFirstNameIsValid &&
+    isLastNameIsValid &&
+    isEmailIsValid &&
+    isBirthdateIsValid &&
+    isQuantityIsValid &&
+    isRadioIsValid &&
+    isMyButtonIsValid) {
+    
+    const openForm = document.querySelector('#openForm');
+    openForm.classList.add('hidden');
+
+    const closeForm = document.querySelector("#closeForm");
+    closeForm.classList.add('active');
+
+    resetMyForm();
+    
+    console.log('Le formulaire est bon');
+    error.innerHTML = '';
+  } else {
+    error.innerHTML = 'Merci de remplir correctement le formulaire.'
+    console.log('le formulaire n\'est pas bon');
+  }
 })
+
 
 // creation of the firstname variable
 inputFirst.addEventListener('input', (event) => {
@@ -223,111 +290,35 @@ inputLast.addEventListener('input', (event) => {
   checkInputsValidationName(lastName, 'lastNameError');
 })
 
+// creation of the email variable
 inputEmail.addEventListener('input', (event) => {
   event.preventDefault();
 
   checkInputValidationEmail();  
 })
 
+// creation of the birthdate variable
 inputBirthdate.addEventListener('input', (event) => {
   event.preventDefault();
 
-  checkInputValidationBirthdate ()
+  checkInputValidationBirthdate();
 })
 
+// creation of the quantity variable
 inputQuantity.addEventListener('input', (event) => {
   event.preventDefault();
 
   checkInputValidationQuantity();
 })
 
-
-
-
-
-
-
-/*let btnLast = document.querySelector('#btnClickLast');
-btnLast.addEventListener('click', (event) => {
+checkboxValide.addEventListener('input', (event) => {
   event.preventDefault();
 
-  const error = document.querySelector('#lastNameError')
+  checkCheckboxIsTick();
+})
 
-  if (lastName.value === '' || lastName.value.length < 2) {
-      error.innerHTML = 'Merci de remplir ce champ';
-  } else {
-      error.innerHTML = '';
-  }
-  console.log(lastName.value);
-})*/
-
-/*let btnBirthdate = document.querySelector('#btnClickBirthdate');
-btnBirthdate.addEventListener('click', (event) => {
+/*radioTournoi.addEventListener('input', (event) => {
   event.preventDefault();
 
-  const error = document.querySelector('#birthdateError');
-  let date = new Date();
-  let birthday = birthdate.value;
-  //birthdate.value === '' || 
-
-  console.log(date);
-  if(birthday >= date) {
-    //console.log('coucou');
-    error.innerHTML = 'Merci de remplir ce champ';
-  } else {
-    //console.log('au revoir')
-    error.innerHTML = '';
-  }
-  console.log(birthdate.value);
-})*/
-
-/*let btnQuantity = document.querySelector('#btnClickQuantity');
-btnQuantity.addEventListener('click', (event) => {
-  event.preventDefault();
-
-  const error = document.querySelector('#quantityError');
-  if (quantity.value === '' || isNaN(quantity.value)) {
-      error.innerHTML = 'Merci de remplir ce champ';
-  } else {
-      error.innerHTML = '';
-  }
-  console.log(quantity.value);
-
-})*/
-
-// vérifie si l'input est vide ou rempli et affiche un message si il est vide
-/*btn.addEventListener('click', function (event) {
-  //console.log('coucou')
-  event.preventDefault();
-  console.log("coucou");
-
-
-  const error = document.querySelector('#firstNameError')
-
-  if (firstName.value === '') {
-      error.innerHTML = 'Aie une erreur est survenue... oups alors...';
-  } else {
-      error.innerHTML = '';
-  }
-
-
-  // on récupère la valeur de l'input et on l'a met dans la variable
-  inputValue = input.value;
-
-  // condition si l'input est vide ou rempli
-  if (inputValue == '') {
-      console.log('coucou')
-      erreur.innerHTML = 'Veuillez remplir ce champ';
-  } else {
-      console.log('coco')
-      erreur.innerHTML = '';
-  }
-
-
-  console.log(lastName.value);
-  console.log(email.value);
-  console.log(birthdate.value);
-  console.log(quantity.value);
-  console.log(locationTournoi.value);
-
+  checkRadioIsTick();
 })*/

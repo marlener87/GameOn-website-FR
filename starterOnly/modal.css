@@ -168,7 +168,8 @@ main {
 }
 
 .bground {
-  /*display: none;*/
+  /*display: none;
+  display: none;*/
   position: fixed;
   z-index: 1;
   left: 0;
@@ -595,4 +596,35 @@ footer {
 .error {
   color: red;
   font-size: 10px;
+}
+
+
+.openForm {
+  display: block;
+}
+
+.openForm.hidden {
+  display: none;
+}
+
+.closeForm {
+  display: none;
+}
+
+.closeForm.active {
+  display: block;
+}
+
+.closeForm.active {
+  width: 536px;
+  height: 850px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.textFin {
+  font-size: 36px;
+  margin-top: 361px;
 }
