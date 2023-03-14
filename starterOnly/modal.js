@@ -16,7 +16,8 @@ const lastName = document.querySelector("#last");
 const email = document.querySelector("#email");
 const birthdate = document.querySelector("#birthdate");
 const quantity = document.querySelector("#quantity");
-const locationTournoi = document.getElementsByName("#location");
+//const locationTournoi = document.getElementsByName("location");
+const localisationInput = document.querySelector('input[name="location"]:checked');
 const myButton = document.querySelector('#checkbox1');
 
 let control = document.querySelectorAll('.text-control');
@@ -74,7 +75,7 @@ function closeModal() {
 
 /**
  * function to validate lastname and firstname
- * @param {string} inputName 
+ * @param {object} inputName 
  * @param {string} inputId 
  * @returns {boolean} isInputValid retourne si l'input est rempli
  */
@@ -190,6 +191,7 @@ function checkCheckboxIsTick () {
   const error = document.querySelector('#myButtonError');
   //document.getElementById('checkbox1').checked = true;
   //console.log('#checkbox1');
+  //let localisation = localisationInput.value;
   let isBoxChecked = false
   
   if(document.getElementById('checkbox1').checked) {
@@ -200,7 +202,11 @@ function checkCheckboxIsTick () {
     isBoxChecked = false;
   }
 
-  return isBoxChecked
+  //return isBoxChecked
+  return {
+    //'localisation': localisation,
+    'isBoxChecked': isBoxChecked
+  }
 }
 
 /**
@@ -208,19 +214,26 @@ function checkCheckboxIsTick () {
  * @returns {boolean} isRadioChecked retourne si un bouton radio est coché
  */
 function checkRadioIsTick () {
-  const truc = document.querySelector('input[name="location"]:checked');
+  const localisationInput = document.querySelector('input[name="location"]:checked');
+  let localisationValue = localisationInput.value;
   const error = document.querySelector('#locationTournoiError');
   let isRadioChecked = false;
 
-  if(truc === null) {
+  if(location === null) {
     error.innerHTML = 'Merci de sélectionner une ville.';
     isRadioChecked = false;
+    //value = '';
   } else {
     error.innerHTML = '';
     isRadioChecked = true;
+    //value = truc.value;
   }
 
-  return isRadioChecked 
+  //return isRadioChecked 
+  return {
+    'isRadioChecked' : isRadioChecked,
+    'localisationValue': localisationValue
+  }
 }
 
 
@@ -270,11 +283,11 @@ btnSubmitValidationForm.addEventListener('click', (event) => {
 
 
 
-  if(isFirstNameIsValid &&
-    isLastNameIsValid &&
-    isEmailIsValid &&
-    isBirthdateIsValid &&
-    isQuantityIsValid &&
+  if(isFirstNameIsValid.isInputValid &&
+    isLastNameIsValid.isInputValid &&
+    isEmailIsValid.isInputValid &&
+    isBirthdateIsValid.isInputValid &&
+    isQuantityIsValid.isInputValid &&
     isRadioIsValid &&
     isMyButtonIsValid) {
     
