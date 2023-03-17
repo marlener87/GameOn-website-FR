@@ -8,7 +8,7 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalBtnClose = document.querySelectorAll(".close");
-const btnCloseEnd = document.querySelectorAll('.btnClose');
+const btnCloseEnd = document.querySelectorAll(".btn-close");
 
 // Const pour récupérer les valeurs dans les inputs
 const firstName = document.querySelector("#first");
@@ -17,25 +17,25 @@ const email = document.querySelector("#email");
 const birthdate = document.querySelector("#birthdate");
 const quantity = document.querySelector("#quantity");
 //const locationTournoi = document.getElementsByName("location");
-const localisationInput = document.querySelector('input[name="location"]:checked');
+const localisationInput = document.querySelector("input[name='location']:checked");
 const myButton = document.querySelector('#checkbox1');
 
-let control = document.querySelectorAll('.text-control');
-let erreur = document.querySelectorAll('#erreur');
-let input = document.querySelectorAll('input');
+let control = document.querySelectorAll(".text-control");
+let erreur = document.querySelectorAll("#erreur");
+let input = document.querySelectorAll("input");
 // création de la variable qui récupère les données de l'input
 let inputValue = '';
 // creation de la variable qui permet de sélectionner une date d'anniversaire <= à la date du jour
-let today = new Date().toISOString().split('T')[0];
+let today = new Date().toISOString().split("T")[0];
 
-let btnSubmitValidationForm = document.querySelector('#button');
-let inputFirst = document.querySelector('#first');
-let inputLast = document.querySelector('#last');
-let inputEmail = document.querySelector('#email');
-let inputBirthdate = document.querySelector('#birthdate');
-let inputQuantity = document.querySelector('#quantity');
-let radioTournoiList = document.getElementsByName("location");;
-let checkboxValide = document.querySelector('#checkbox1');
+let btnSubmitValidationForm = document.querySelector("#button");
+let inputFirst = document.querySelector("#first");
+let inputLast = document.querySelector("#last");
+let inputEmail = document.querySelector("#email");
+let inputBirthdate = document.querySelector("#birthdate");
+let inputQuantity = document.querySelector("#quantity");
+let radioTournoiList = document.getElementsByName("location");
+let checkboxValide = document.querySelector("#checkbox1");
 
 
 
@@ -114,10 +114,10 @@ function checkInputValidationEmail () {
   //console.log(event.target);
   //console.log(event.target.value);
   let regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i;
-  let valueToCheck = email.value;
+  let inputEmail = email.value;
   let isInputValid = false;
 
-  if (regex.test(valueToCheck)) {
+  if (regex.test(inputEmail)) {
     error.innerHTML = '';
     isInputValid = true;
   } else {
@@ -128,7 +128,7 @@ function checkInputValidationEmail () {
   //return isInputValid;
   return {
     'isInputValid': isInputValid,
-    'valueToCheck': valueToCheck
+    'inputEmail': inputEmail
   }
 }
 
@@ -164,7 +164,8 @@ function checkInputValidationBirthdate () {
  */
 function checkInputValidationQuantity () {
   const error = document.querySelector('#quantityError');
-  let quantityValue = quantity.value;
+  //let quantityValue = quantity.value;
+  let inputQuantity = quantity.value;
   let isInputValid = false;
 
   if (quantity.value === '' || isNaN(quantity.value) || quantity.value >= 100) {
@@ -178,7 +179,8 @@ function checkInputValidationQuantity () {
   //return isInputValid
   return {
     'isInputValid': isInputValid,
-    'quantityValue': quantityValue
+    //'quantityValue': quantityValue
+    'inputQuantity': inputQuantity
   }
 }
 
@@ -192,7 +194,7 @@ function checkCheckboxIsTick () {
   //document.getElementById('checkbox1').checked = true;
   //console.log('#checkbox1');
   //let localisation = localisationInput.value;
-  let isBoxChecked = false
+  let isBoxChecked = false;
   
   if(document.getElementById('checkbox1').checked) {
     error.innerHTML = '';
@@ -215,21 +217,20 @@ function checkCheckboxIsTick () {
  */
 function checkRadioIsTick () {
   const localisationInput = document.querySelector('input[name="location"]:checked');
-  let localisationValue = localisationInput.value;
   const error = document.querySelector('#locationTournoiError');
   let isRadioChecked = false;
+  let localisationValue = null;
 
-  if(location === null) {
+  //console.log(localisationInput);
+
+  if(localisationInput === null) {
     error.innerHTML = 'Merci de sélectionner une ville.';
-    isRadioChecked = false;
-    //value = '';
   } else {
-    error.innerHTML = '';
     isRadioChecked = true;
-    //value = truc.value;
+    localisationValue = localisationInput.value;
   }
 
-  //return isRadioChecked 
+  //return if radio button is checked and his value.  isRadioChecked 
   return {
     'isRadioChecked' : isRadioChecked,
     'localisationValue': localisationValue
@@ -288,7 +289,7 @@ btnSubmitValidationForm.addEventListener('click', (event) => {
     isEmailIsValid.isInputValid &&
     isBirthdateIsValid.isInputValid &&
     isQuantityIsValid.isInputValid &&
-    isRadioIsValid &&
+    isRadioIsValid.isRadioChecked &&
     isMyButtonIsValid) {
     
     const openForm = document.querySelector('#openForm');
