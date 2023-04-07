@@ -21,6 +21,10 @@ body {
   margin: 0 auto;
 }
 
+body.isModalOpen {
+  overflow: hidden;
+}
+
 p {
   margin-bottom: 0;
   padding: 0.5vw;

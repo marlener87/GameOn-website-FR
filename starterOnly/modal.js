@@ -58,6 +58,9 @@ function openClosePageNavigation() {
  */
 function launchModal() {
   modalbg.style.display = "block";
+
+  const myBody = document.querySelector('body');
+  myBody.classList.add('isModalOpen');
 }
 
 /**
@@ -71,6 +74,9 @@ function closeModal() {
 
   const closeForm = document.querySelector('#closeForm');
   closeForm.classList.remove('active');
+
+  const myBody = document.querySelector('body');
+  myBody.classList.remove('isModalOpen');
 }
 
 /**
@@ -211,6 +217,7 @@ function checkCheckboxIsTick () {
   }
 }
 
+
 /**
  * function to check if a city is tick
  * @returns {boolean} isRadioChecked retourne si un bouton radio est coché
@@ -228,6 +235,7 @@ function checkRadioIsTick () {
   } else {
     isRadioChecked = true;
     localisationValue = localisationInput.value;
+    error.innerHTML = ' ';
   }
 
   //return if radio button is checked and his value.  isRadioChecked 
